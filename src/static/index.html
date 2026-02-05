@@ -48,15 +48,15 @@
     <script src="app.js"></script>
     <script>
       // Enhance activity card rendering to include participants
-      document.addEventListener('DOMContentLoaded', () => {
-        const activitiesList = document.getElementById('activities-list');
-        fetch('/activities')
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("/activities")
           .then(res => res.json())
           .then(data => {
-            activitiesList.innerHTML = '';
+            const activitiesList = document.getElementById("activities-list");
+            activitiesList.innerHTML = "";
             Object.entries(data).forEach(([name, info]) => {
-              const card = document.createElement('div');
-              card.className = 'activity-card';
+              const card = document.createElement("div");
+              card.className = "activity-card";
               card.innerHTML = `
                 <h4>${name}</h4>
                 <p>${info.description}</p>
@@ -65,11 +65,9 @@
                 <div class="participants-section">
                   <strong>Participants:</strong>
                   <ul class="participants-list">
-                    ${
-                      info.participants.length
-                        ? info.participants.map(email => `<li>${email}</li>`).join('')
-                        : '<li class="no-participants">No participants yet.</li>'
-                    }
+                    ${info.participants.length
+                      ? info.participants.map(email => `<li>${email}</li>`).join("")
+                      : '<li class="no-participants">No participants yet.</li>'}
                   </ul>
                 </div>
               `;
